@@ -1,66 +1,50 @@
 <script>
-    const API_KEY = import.meta.env.VITE_WEATHERAPI_KEY;
+
 
     let city = '';
     let weather = null;
     let loading = false;
     let error = '';
 
-    async function searchWeather() {
-        error = '';
-        weather = null;
+async function searchWeather() {
+    error = '';
+    weather = null;
 
-        if (!city.trim()) {
-            error = 'Ingresa una ciudad.';
-            return;
-        }
-
-        if (!API_KEY) {
-            error = 'No se encontró la API Key de WeatherAPI.';
-            return;
-        }
-
-        loading = true;
-
-        try {
-            const url =
-                `https://api.weatherapi.com/v1/current.json` +
-                `?key=${API_KEY}` +
-                `&q=${encodeURIComponent(city.trim())}` +
-                `&lang=es`;
-
-            console.log('Consultando WeatherAPI:', city);
-
-            const response = await fetch(url);
-            const data = await response.json();
-
-            console.log('WeatherAPI status:', response.status);
-            console.log('WeatherAPI respuesta:', data);
-
-            if (!response.ok) {
-                throw new Error(
-                    data.error?.message || 'Error al consultar WeatherAPI.'
-                );
-            }
-
-            weather = {
-                city: data.location.name,
-                country: data.location.country,
-                temperature: Math.round(data.current.temp_c),
-                feelsLike: Math.round(data.current.feelslike_c),
-                humidity: data.current.humidity,
-                wind: data.current.wind_kph,
-                description: data.current.condition.text,
-                icon: `https:${data.current.condition.icon}`
-            };
-
-        } catch (err) {
-            console.error('ERROR COMPLETO:', err);
-            error = err.message || 'No se pudo consultar el clima.';
-        } finally {
-            loading = false;
-        }
+    if (!city.trim()) {
+        error = 'Ingresa una ciudad.';
+        return;
     }
+
+    loading = true;
+
+    try {
+        const url =
+            `http://127.0.0.1:8000/api/weather` +
+            `?city=${encodeURIComponent(city.trim())}`;
+
+        console.log('Consultando backend:', url);
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        console.log('Backend status:', response.status);
+        console.log('Backend respuesta:', data);
+
+        if (!response.ok) {
+            throw new Error(
+                data.detail || 'Error al consultar el backend.'
+            );
+        }
+
+        weather = data;
+
+    } catch (err) {
+        console.error('ERROR COMPLETO:', err);
+        error = err.message || 'No se pudo consultar el clima.';
+    } finally {
+        loading = false;
+    }
+}
 </script>
 
 <div class="weather-card">
