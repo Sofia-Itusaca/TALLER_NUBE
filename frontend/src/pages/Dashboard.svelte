@@ -1,438 +1,563 @@
 <script>
     export let onLogout;
     export let onNavigate;
-    export let currentPage;
 </script>
 
-<div class="app">
+<div class="dashboard">
 
-    <header>
+    <!-- Decoración -->
+    <div class="sun"></div>
+    <div class="cloud cloud-one">☁️</div>
+    <div class="cloud cloud-two">☁️</div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
         <div class="brand">
-            <span>☁️</span>
+            <span class="brand-icon">🌤️</span>
+
             <div>
-                <strong>TALLER_NUBE</strong>
-                <small>Cloud Management</small>
+                <strong>Consultor de Clima</strong>
+                <small>Información meteorológica</small>
             </div>
         </div>
 
-        <div class="user">
-            <div class="avatar">A</div>
-            <div>
-                <strong>Administrador</strong>
-                <small>admin@tallernube.com</small>
-            </div>
+        <button class="logout" on:click={onLogout}>
+            Cerrar sesión
+        </button>
 
-            <button class="logout" on:click={onLogout}>
-                Cerrar sesión
-            </button>
-        </div>
     </header>
 
-    <div class="layout">
 
-        <aside>
-            <p class="menu-title">MENÚ PRINCIPAL</p>
+    <!-- CONTENIDO -->
+    <main class="main-content">
 
-            <button class="menu active">
-                📊
-                <span>Dashboard</span>
-            </button>
+        <section class="hero">
+
+            <div class="hero-icon">
+                ☀️
+            </div>
+
+            <h1>
+                Consulta el clima
+            </h1>
+
+            <p>
+                Descubre las condiciones meteorológicas
+                de cualquier ciudad al instante.
+            </p>
 
             <button
-                class:active={currentPage === 'weather'}
-                class="menu"
+                class="weather-button"
                 on:click={() => onNavigate('weather')}
             >
-                🌤️
-                <span>Consulta clima</span>
+                <span>🌤️</span>
+                Consultar clima
             </button>
 
-            <div class="sidebar-bottom">
-                <p>☁️ Azure</p>
-                <small>Aplicación en desarrollo</small>
+        </section>
+
+
+        <!-- INFORMACIÓN -->
+        <section class="features">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🌡️
+                </div>
+
+                <h3>
+                    Temperatura
+                </h3>
+
+                <p>
+                    Conoce la temperatura actual
+                    de tu ciudad.
+                </p>
+
             </div>
-        </aside>
 
-        <main>
 
-            <div class="welcome">
-                <div>
-                    <p>Panel principal</p>
-                    <h1>Bienvenido a TALLER_NUBE</h1>
-                    <span>
-                        Plataforma preparada para despliegue en la nube.
-                    </span>
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💧
                 </div>
+
+                <h3>
+                    Humedad
+                </h3>
+
+                <p>
+                    Consulta el porcentaje de
+                    humedad en el ambiente.
+                </p>
+
             </div>
 
-            <section class="cards">
 
-                <article class="card">
-                    <div class="icon blue">☁️</div>
-                    <div>
-                        <small>PLATAFORMA</small>
-                        <h2>Azure</h2>
-                        <span class="status">● Preparado</span>
-                    </div>
-                </article>
+            <div class="feature-card">
 
-                <article class="card">
-                    <div class="icon green">✓</div>
-                    <div>
-                        <small>APLICACIÓN</small>
-                        <h2>Operativa</h2>
-                        <span class="status">● Funcionando</span>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="icon purple">⚡</div>
-                    <div>
-                        <small>ENTORNO</small>
-                        <h2>Desarrollo</h2>
-                        <span class="status">● Activo</span>
-                    </div>
-                </article>
-
-            </section>
-
-            <section class="information">
-
-                <div class="panel">
-                    <h2>Estado del sistema</h2>
-
-                    <div class="system-row">
-                        <span>Frontend</span>
-                        <strong class="online">ONLINE</strong>
-                    </div>
-
-                    <div class="system-row">
-                        <span>Servidor web</span>
-                        <strong class="online">PREPARADO</strong>
-                    </div>
-
-                    <div class="system-row">
-                        <span>Docker</span>
-                        <strong class="online">CONFIGURADO</strong>
-                    </div>
-
-                    <div class="system-row">
-                        <span>Azure</span>
-                        <strong class="pending">PENDIENTE</strong>
-                    </div>
+                <div class="feature-icon">
+                    💨
                 </div>
 
-                <div class="panel">
-                    <h2>Próximas funcionalidades</h2>
+                <h3>
+                    Viento
+                </h3>
 
-                    <div class="feature">
-                        <span>🔐</span>
-                        <div>
-                            <strong>Autenticación</strong>
-                            <small>Sistema de acceso</small>
-                        </div>
-                    </div>
+                <p>
+                    Conoce la velocidad actual
+                    del viento.
+                </p>
 
-                    <div class="feature">
-                        <span>🌤️</span>
-                        <div>
-                            <strong>Consulta de clima</strong>
-                            <small>Integración con API</small>
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="feature">
-                        <span>☁️</span>
-                        <div>
-                            <strong>Despliegue Azure</strong>
-                            <small>Publicación cloud</small>
-                        </div>
-                    </div>
-                </div>
+        </section>
 
-            </section>
+    </main>
 
-        </main>
 
-    </div>
+    <!-- FOOTER -->
+    <footer>
+        TALLER_NUBE · Consulta meteorológica
+    </footer>
 
 </div>
 
+
 <style>
-    :global(body) {
-        background: #0f172a;
-        color: #e2e8f0;
-    }
 
-    .app {
+    .dashboard {
         min-height: 100vh;
-        background: #0f172a;
+
+        position: relative;
+
+        overflow: hidden;
+
+        background:
+            linear-gradient(
+                135deg,
+                #dbeafe 0%,
+                #bfdbfe 45%,
+                #e0f2fe 100%
+            );
+
+        color: #173b61;
+
+        font-family:
+            Inter,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
     }
 
-    header {
-        height: 72px;
+
+    /* =========================
+       DECORACIÓN
+       ========================= */
+
+    .sun {
+        position: absolute;
+
+        width: 220px;
+        height: 220px;
+
+        top: 60px;
+        right: 70px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle at 35% 35%,
+                #fff7cc,
+                #fde68a 50%,
+                #facc15
+            );
+
+        opacity: .75;
+
+        box-shadow:
+            0 20px 60px rgba(245, 158, 11, .2);
+    }
+
+
+    .cloud {
+        position: absolute;
+
+        font-size: 130px;
+
+        opacity: .22;
+
+        pointer-events: none;
+
+        user-select: none;
+    }
+
+
+    .cloud-one {
+        top: 280px;
+        left: 80px;
+    }
+
+
+    .cloud-two {
+        bottom: 80px;
+        right: 120px;
+
+        font-size: 90px;
+    }
+
+
+    /* =========================
+       NAVBAR
+       ========================= */
+
+    .navbar {
+        position: relative;
+
+        z-index: 5;
+
+        height: 78px;
+
         display: flex;
-        align-items: center;
+
         justify-content: space-between;
-        padding: 0 30px;
-        background: #111827;
-        border-bottom: 1px solid #263244;
+
+        align-items: center;
+
+        padding: 0 55px;
+
+        box-sizing: border-box;
+
+        background: rgba(255, 255, 255, .58);
+
+        border-bottom: 1px solid rgba(255, 255, 255, .7);
+
+        backdrop-filter: blur(12px);
     }
 
-    .brand,
-    .user {
+
+    .brand {
         display: flex;
+
         align-items: center;
+
         gap: 12px;
     }
 
-    .brand > span {
-        font-size: 28px;
+
+    .brand-icon {
+        font-size: 34px;
     }
+
 
     .brand strong {
         display: block;
-        font-size: 17px;
+
+        color: #173b61;
+
+        font-size: 18px;
     }
 
-    .brand small,
-    .user small {
+
+    .brand small {
         display: block;
-        color: #64748b;
-        margin-top: 3px;
+
+        margin-top: 2px;
+
+        color: #607890;
+
+        font-size: 12px;
     }
 
-    .user {
-        gap: 10px;
-    }
-
-    .avatar {
-        width: 38px;
-        height: 38px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: #0284c7;
-        font-weight: bold;
-    }
 
     .logout {
-        margin-left: 15px;
-        padding: 8px 14px;
-        border: 1px solid #334155;
-        border-radius: 8px;
-        background: transparent;
-        color: #cbd5e1;
+        padding: 10px 18px;
+
+        border-radius: 10px;
+
+        border: 1px solid #9bb6d1;
+
+        background: rgba(255, 255, 255, .7);
+
+        color: #315f8c;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
         cursor: pointer;
+
+        transition: .2s ease;
     }
+
 
     .logout:hover {
-        background: #1e293b;
+        background: white;
+
+        transform: translateY(-1px);
     }
 
-    .layout {
-        display: flex;
-        min-height: calc(100vh - 73px);
-    }
 
-    aside {
-        width: 230px;
-        padding: 25px 15px;
-        background: #111827;
-        border-right: 1px solid #263244;
+    /* =========================
+       CONTENIDO PRINCIPAL
+       ========================= */
+
+    .main-content {
         position: relative;
+
+        z-index: 2;
+
+        max-width: 1100px;
+
+        margin: 0 auto;
+
+        padding: 80px 30px 40px;
+
+        box-sizing: border-box;
     }
 
-    .menu-title {
-        font-size: 11px;
-        color: #64748b;
-        font-weight: bold;
-        margin: 0 10px 15px;
+
+    .hero {
+        text-align: center;
+
+        max-width: 760px;
+
+        margin: 0 auto 65px;
     }
 
-    .menu {
-        width: 100%;
-        display: flex;
+
+    .hero-icon {
+        font-size: 70px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .hero h1 {
+        margin: 0;
+
+        font-size: clamp(42px, 6vw, 68px);
+
+        line-height: 1.05;
+
+        letter-spacing: -2px;
+
+        color: #0f2f52;
+
+        font-weight: 800;
+    }
+
+
+    .hero p {
+        margin: 18px auto 30px;
+
+        max-width: 650px;
+
+        color: #526b83;
+
+        font-size: 19px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================
+       BOTÓN CLIMA
+       ========================= */
+
+    .weather-button {
+        display: inline-flex;
+
         align-items: center;
-        gap: 12px;
-        padding: 12px;
-        margin-bottom: 7px;
-        border: 0;
-        border-radius: 8px;
-        background: transparent;
-        color: #94a3b8;
-        text-align: left;
-        cursor: pointer;
-    }
 
-    .menu:hover,
-    .menu.active {
-        background: #1e3a5f;
-        color: #38bdf8;
-    }
+        justify-content: center;
 
-    .sidebar-bottom {
-        position: absolute;
-        bottom: 25px;
-        left: 20px;
-        color: #38bdf8;
-    }
+        gap: 10px;
 
-    .sidebar-bottom small {
-        color: #64748b;
-    }
+        padding: 16px 30px;
 
-    main {
-        flex: 1;
-        padding: 35px;
-        overflow: auto;
-    }
+        border: none;
 
-    .welcome p {
-        color: #38bdf8;
-        margin-bottom: 5px;
-    }
-
-    .welcome h1 {
-        margin: 0 0 8px;
-        font-size: 30px;
-    }
-
-    .welcome span {
-        color: #94a3b8;
-    }
-
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 30px;
-    }
-
-    .card,
-    .panel {
-        background: #1e293b;
-        border: 1px solid #334155;
         border-radius: 14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #5b8fc5,
+                #3b82c4
+            );
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 12px 28px rgba(59, 130, 196, .25);
+
+        transition: .2s ease;
     }
 
-    .card {
-        display: flex;
-        gap: 15px;
-        padding: 22px;
+
+    .weather-button:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 16px 35px rgba(59, 130, 196, .3);
     }
 
-    .icon {
-        width: 48px;
-        height: 48px;
-        display: grid;
-        place-items: center;
-        border-radius: 10px;
+
+    .weather-button span {
         font-size: 22px;
     }
 
-    .blue {
-        background: #082f49;
-        color: #38bdf8;
-    }
 
-    .green {
-        background: #052e16;
-        color: #4ade80;
-    }
+    /* =========================
+       TARJETAS
+       ========================= */
 
-    .purple {
-        background: #2e1065;
-        color: #c084fc;
-    }
-
-    .card small {
-        color: #64748b;
-        font-size: 10px;
-    }
-
-    .card h2 {
-        margin: 5px 0;
-    }
-
-    .status {
-        color: #4ade80;
-        font-size: 12px;
-    }
-
-    .information {
+    .features {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-top: 20px;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 22px;
     }
 
-    .panel {
-        padding: 22px;
+
+    .feature-card {
+        padding: 28px;
+
+        text-align: center;
+
+        border-radius: 22px;
+
+        background: rgba(255, 255, 255, .68);
+
+        border: 1px solid rgba(255, 255, 255, .85);
+
+        box-shadow:
+            0 15px 35px rgba(30, 64, 175, .1);
+
+        backdrop-filter: blur(10px);
+
+        transition: .2s ease;
     }
 
-    .panel h2 {
-        margin-top: 0;
-        font-size: 17px;
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+
+        background: rgba(255, 255, 255, .82);
     }
 
-    .system-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 14px 0;
-        border-bottom: 1px solid #334155;
+
+    .feature-icon {
+        font-size: 38px;
+
+        margin-bottom: 12px;
     }
 
-    .system-row:last-child {
-        border-bottom: 0;
-    }
 
-    .online {
-        color: #4ade80;
-        font-size: 12px;
-    }
+    .feature-card h3 {
+        margin: 0 0 8px;
 
-    .pending {
-        color: #fbbf24;
-        font-size: 12px;
-    }
+        color: #173b61;
 
-    .feature {
-        display: flex;
-        gap: 12px;
-        padding: 13px 0;
-        border-bottom: 1px solid #334155;
-    }
-
-    .feature:last-child {
-        border-bottom: 0;
-    }
-
-    .feature > span {
         font-size: 20px;
     }
 
-    .feature strong,
-    .feature small {
-        display: block;
+
+    .feature-card p {
+        margin: 0;
+
+        color: #607890;
+
+        line-height: 1.5;
+
+        font-size: 14px;
     }
 
-    .feature small {
-        color: #64748b;
-        margin-top: 3px;
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+        position: relative;
+
+        z-index: 2;
+
+        padding: 25px;
+
+        text-align: center;
+
+        color: #607890;
+
+        font-size: 13px;
     }
 
-    @media (max-width: 900px) {
-        aside {
-            width: 180px;
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 800px) {
+
+        .navbar {
+            padding: 0 20px;
         }
 
-        .cards {
+        .main-content {
+            padding-top: 55px;
+        }
+
+        .features {
             grid-template-columns: 1fr;
         }
 
-        .information {
-            grid-template-columns: 1fr;
+        .sun {
+            width: 140px;
+            height: 140px;
+
+            right: -20px;
         }
+
     }
+
+
+    @media (max-width: 500px) {
+
+        .brand small {
+            display: none;
+        }
+
+        .brand strong {
+            font-size: 15px;
+        }
+
+        .logout {
+            padding: 8px 12px;
+        }
+
+        .hero h1 {
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 16px;
+        }
+
+    }
+
 </style>
